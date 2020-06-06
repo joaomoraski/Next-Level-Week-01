@@ -2,8 +2,21 @@
     height: 100vh;
   
     background: url('../../assets/home-background.svg') no-repeat 660px bottom;
+    transition: 3s;
   }
   
+  @media(max-width: 1300px){
+    #page-home {
+      background: url('../../assets/home-background.svg') no-repeat 200px bottom;  
+    }
+  }
+
+  @media(max-width: 900px){
+    #page-home {
+      background: url('../../assets/home-background.svg') no-repeat 70px bottom;  
+    }
+  }
+
   #page-home .content {
     width: 100%;
     height: 100%;
