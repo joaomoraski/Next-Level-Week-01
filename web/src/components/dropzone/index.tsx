@@ -34,7 +34,7 @@ const Dropzone: React.FC<Props> = ({ onFileUploaded }) => {
             :
             <p>
             <FiUpload />
-            Imagem do estabelecimento
+            Imagem do estabelecimento *
         </p>
         }
 

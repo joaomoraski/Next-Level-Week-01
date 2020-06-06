@@ -12,7 +12,7 @@ const Home = () =>{
         <div id="page-home">
             <div className="content">
                 <header>
-                    <img src={logo} alt="Ecoleta"/>
+                    <img src={logo} alt="Ecoleta" className="imageResponsive"/>
                 </header>
                 <main>
                     <h1>Seu marketplace de coleta de resíduos.</h1>

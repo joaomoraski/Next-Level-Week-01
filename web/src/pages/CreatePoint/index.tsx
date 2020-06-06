@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Map, TileLayer, Marker} from 'react-leaflet';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { LeafletMouseEvent } from 'leaflet';
 import api from '../../services/api';
 
@@ -147,8 +148,19 @@ const CreatePoint = () =>{
 
         await api.post('points', data);
 
-        alert("Ponto de coleta criado com sucesso!");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
 
+        Toast.fire({
+            title: 'Successo!',
+            text: 'Sucesso ao cadastrar ponto de coleta',
+            icon: 'success',
+        })
+        
         history.push('/');
     }
 
@@ -171,7 +183,7 @@ const CreatePoint = () =>{
                         <h2>Dados</h2>
                     </legend>
                     <div className="field">
-                        <label htmlFor="name">Nome da entidade</label>
+                        <label htmlFor="name">Nome da entidade *</label>
                         <input 
                         type="text"
                         name="name"
@@ -181,7 +193,7 @@ const CreatePoint = () =>{
                     </div>
                     <div className="field-group">
                         <div className="field">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email *</label>
                             <input 
                             type="email"
                             name="email"
@@ -190,7 +202,7 @@ const CreatePoint = () =>{
                             />
                         </div>
                         <div className="field">
-                            <label htmlFor="whatsapp">Whatsapp</label>
+                            <label htmlFor="whatsapp">Whatsapp *</label>
                             <input 
                             type="text"
                             name="whatsapp"
@@ -203,7 +215,7 @@ const CreatePoint = () =>{
                 <fieldset>
                     <legend>
                         <h2>Endereço</h2>
-                        <span>Selecione o Endereço no mapa.(Clique)</span>
+                        <span>Selecione o Endereço no mapa.(Clique) *</span>
                     </legend>
                     <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
                     <TileLayer
@@ -221,7 +233,7 @@ const CreatePoint = () =>{
                                 id="uf" 
                                 value={selectedUF} 
                                 onChange={handleSelectUf}>
-                                <option value="0">Selecione uma UF</option>
+                                <option value="0">Selecione uma UF *</option>
                                 {ufs.map(uf => (
                                     <option key={uf} value={uf}>{uf}</option>
                                 ))}
@@ -235,7 +247,7 @@ const CreatePoint = () =>{
                                 value={selectedCity}
                                 onChange={handleSelectCity}
                             >
-                                <option value="0">Selecione uma cidade</option>
+                                <option value="0">Selecione uma cidade *</option>
                                 {cities.map(city => (
                                     <option key={city} value={city}>{city}</option>
                                 ))}
@@ -246,7 +258,7 @@ const CreatePoint = () =>{
                 <fieldset>
                     <legend>
                         <h2>Ítems de coleta</h2>
-                        <span>Selecione um ou mais itens abaixo</span>
+                        <span>Selecione um ou mais itens abaixo *</span>
                     </legend>
                     <ul className="items-grid">
                         {items.map(item => (                        
