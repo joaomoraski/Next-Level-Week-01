@@ -84,6 +84,19 @@ const Points = () =>    {
       })
     }, [selectedItems]);
 
+    useEffect(() => {
+      api.get('points', {
+          params: {
+              city: routeParams.city,
+              uf: routeParams.uf,
+              items: selectedItems
+          }
+      }).then(response => {
+          setPoints(response.data);
+      })
+  }, [selectedItems]);
+
+
     function handleNavigateHome(){
       navigation.navigate('Home');
     }
@@ -110,8 +123,8 @@ const Points = () =>    {
     return (
         <>
             <View style={styles.container}>
-                <TouchableOpacity onPress={handleNavigateBack}>
-                    <Icon name='arrow-left' size={20} color="#34cb79"></Icon><Icon name='home' size={20} color="#34cb79"></Icon>
+                <TouchableOpacity>
+                    <Icon name='arrow-left' onPress={handleNavigateBack} size={20} color="#34cb79"><Icon name='home' onPress={handleNavigateHome} size={20} color="#34cb79"></Icon></Icon>
                 </TouchableOpacity>
 
                 <Text style={styles.title}>Bem vindo.</Text>
